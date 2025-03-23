@@ -15,37 +15,21 @@
 
 ## 项目结构
 -project/
-
 -├── core/
-
 -│   ├── init.py
-
 -│   ├── fetcher.py
-
 -│   ├── parser.py
-
 -│   ├── matcher.py
-
 -│   ├── tester.py
-
 -│   ├── exporter.py
-
 -│   └── models.py
-
 -├── config/
-
 -│   ├── config.ini
-
 -│   ├── urls.txt
-
 -│   ├── templates.txt
-
 -│   └── blacklist.txt
-
 -├── main.py
-
 -└── requirements.txt
-
 ### 说明
 
 - **core/**：核心模块，包含项目的主要功能实现。
