@@ -1,5 +1,5 @@
 # IPTV 频道管理工具
-
+#镜像地址 https://fastly.jsdelivr.net/gh/cnliux/TV@main/outputs/all.m3u
 ## 项目概述
 
 这是一个用于管理和优化 IPTV 频道的工具，能够自动获取、解析、分类和测速 IPTV 频道，并导出结果。它可以帮助用户快速筛选出可用的 IPTV 频道，提高观看体验。
