@@ -1,0 +1,18 @@
+project/
+│
+├── core/
+│   ├── __init__.py
+│   ├── fetcher.py
+│   ├── parser.py
+│   ├── matcher.py
+│   ├── tester.py
+│   ├── exporter.py
+│   └── models.py
+├── config/
+│   ├── config.ini
+│   ├── urls.txt
+│   ├── templates.txt
+│   └── blacklist.txt
+│
+├── main.py
+└── requirements.txt

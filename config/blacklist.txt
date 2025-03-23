@@ -1,0 +1,19 @@
+# 黑名单频道名称
+# 黑名单域名
+# 黑名单单个网址多种格式支持
+# =============================================================================
+example.com
+150.158.112.123
+epg.pw
+skype.serv00.net
+iptv.yjxfz.com
+live-hls-web-ajb.getaj.net
+live.goodiptv.club
+hc73k3dhwo5gfkt.wcetv.com
+stream1.freetv.fun
+zw9999.cnstream.top
+zsntlqj.xicp.net
+z.b.bkpcp.top
+zb.xmzb.xyz
+
+# 黑名单单个网址
