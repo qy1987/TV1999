@@ -14,22 +14,22 @@
 - IPv4/IPv6 分类导出：将频道按 IPv4 和 IPv6 地址分别导出，便于针对性使用。
 
 ## 项目结构
-project/
-├── core/
-│   ├── init.py
-│   ├── fetcher.py
-│   ├── parser.py
-│   ├── matcher.py
-│   ├── tester.py
-│   ├── exporter.py
-│   └── models.py
-├── config/
-│   ├── config.ini
-│   ├── urls.txt
-│   ├── templates.txt
-│   └── blacklist.txt
-├── main.py
-└── requirements.txt
+#project/
+#├── core/
+#│   ├── init.py
+#│   ├── fetcher.py
+#│   ├── parser.py
+#│   ├── matcher.py
+#│   ├── tester.py
+#│   ├── exporter.py
+#│   └── models.py
+#├── config/
+#│   ├── config.ini
+#│   ├── urls.txt
+#│   ├── templates.txt
+#│   └── blacklist.txt
+#├── main.py
+#└── requirements.txt
 
 ## 使用方法
 
