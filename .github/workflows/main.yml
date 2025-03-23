@@ -1,4 +1,4 @@
-name: 测试数据
+name: Run Python Script and Delete Results
 
 on:
   # 定时运行，例如每天凌晨 00:00 UTC
