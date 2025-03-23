@@ -1,4 +1,4 @@
-name: Run Python Script and Commit Results
+name: 每日更新
 
 on:
   push:
