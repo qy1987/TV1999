@@ -14,24 +14,43 @@
 - IPv4/IPv6 分类导出：将频道按 IPv4 和 IPv6 地址分别导出，便于针对性使用。
 
 ## 项目结构
-#project/
-#├── core/
-#│   ├── init.py
-#│   ├── fetcher.py
-#│   ├── parser.py
-#│   ├── matcher.py
-#│   ├── tester.py
-#│   ├── exporter.py
-#│   └── models.py
-#├── config/
-#│   ├── config.ini
-#│   ├── urls.txt
-#│   ├── templates.txt
-#│   └── blacklist.txt
-#├── main.py
-#└── requirements.txt
+-project/
+-├── core/
+-│   ├── init.py
+-│   ├── fetcher.py
+-│   ├── parser.py
+-│   ├── matcher.py
+-│   ├── tester.py
+-│   ├── exporter.py
+-│   └── models.py
+-├── config/
+-│   ├── config.ini
+-│   ├── urls.txt
+-│   ├── templates.txt
+-│   └── blacklist.txt
+-├── main.py
+-└── requirements.txt
 
-## 使用方法
+
+### 说明
+
+- **core/**：核心模块，包含项目的主要功能实现。
+  - `__init__.py`：初始化文件，使 core 被识别为一个 Python 包。
+  - `fetcher.py`：订阅源获取器，负责从指定 URL 获取 IPTV 频道数据。
+  - `parser.py`：解析器，用于解析获取到的频道数据。
+  - `matcher.py`：分类匹配器，根据预定义的模板对频道进行分类。
+  - `tester.py`：测速模块，对每个频道进行速度测试。
+  - `exporter.py`：导出模块，将处理后的结果导出为多种格式。
+  - `models.py`：定义项目中使用的数据模型。
+- **config/**：配置文件，包含项目运行所需的各类配置。
+  - `config.ini`：主配置文件，设置输出目录、测速参数等。
+  - `urls.txt`：订阅源 URL 列表。
+  - `templates.txt`：频道分类模板。
+  - `blacklist.txt`：黑名单列表，包含需要过滤的域名、URL 或频道名称。
+- **main.py**：项目的入口文件，包含主工作流程。
+- **requirements.txt**：项目依赖的 Python 包列表，用于安装项目运行所需的依赖。
+
+通过这种清晰的项目结构，用户可以快速了解项目的组成和各个部分的功能，便于项目的使用和维护。
 
 ### 配置项目
 
