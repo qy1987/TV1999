@@ -1,4 +1,5 @@
 https://live.iptv365.org/live.txt
+http://8.138.7.223/live.txt
 https://live.zbds.top/tv/iptv4.txt
 https://live.zbds.top/tv/iptv6.txt
 https://ghproxy.net/https://raw.githubusercontent.com/zhuxinfu88/tvlist/main/live.txt
@@ -8,6 +9,7 @@ https://raw.kkgithub.com/Wirili/IPTV/main/live.m3u
 https://bitbucket.org/xduo/duoapi/raw/master/v.txt
 https://7337.kstore.space/twkj/tvzb.txt
 http://8.138.7.223/live.txt
+https://ghfast.top/https://raw.githubusercontent.com/tianya7981/jiekou/refs/heads/main/%E9%87%8E%E7%81%AB959
 https://fastly.jsdelivr.net/gh/zhuxinfu88/tvlist@main/txt_files/%E5%8C%97%E4%BA%AC%E8%81%94%E9%80%9A.txt
 https://fastly.jsdelivr.net/gh/zhuxinfu88/tvlist@main/txt_files/Susa.txt
 https://gitee.com/zhang-station1/genius-film-and-television/raw/master/3658
