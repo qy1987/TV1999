@@ -76,11 +76,6 @@ project/
 3. 在 `config/templates.txt` 中定义频道分类规则。
 4. 在 `config/blacklist.txt` 中添加需要过滤的域名、URL 或频道名称。
 
-### 运行程序
-
-```bash
-python main.py
-
 ### 其他
 [![Star History Chart](https://api.star-history.com/svg?repos=cnliux/tv&type=Date)](https://www.star-history.com/#cnliux/tv&Date)
 
