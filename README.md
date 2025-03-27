@@ -80,9 +80,8 @@ project/
 ```bash
 python main.py
 
-## Star History
+## 🌟 欢迎星标
 
 [![Star History Chart](https://api.star-history.com/svg?repos=cnliux/tv&type=Date)](https://www.star-history.com/#cnliux/tv&Date)
 
-![Visitor Count](https://profile-counter.glitch.me/cnliux/TV/count.svg)
 
