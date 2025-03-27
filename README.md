@@ -1,5 +1,4 @@
 ![IPTV](https://socialify.git.ci/cnliux/TV/image?description=1&descriptionEditable=IPTV%20%E7%9B%B4%E6%92%AD%E6%BA%90&forks=1&language=1&name=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Auto)
-## Star History
 
 # IPTV 频道管理工具
 #镜像地址 https://fastly.jsdelivr.net/gh/cnliux/TV@main/outputs/all.m3u
