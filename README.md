@@ -79,6 +79,7 @@ project/
 
 ```bash
 python main.py
-[![Star History Chart](https://api.star-history.com/svg?repos=cnliux/TV&type=Date)](https://star-history.com/#cnliux/TV)
-![Visitor Count](https://profile-counter.glitch.me/lcnliux/TV/count.svg)
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=cnliux/tv&type=Date)](https://www.star-history.com/#cnliux/tv&Date)
+![Visitor Count](https://profile-counter.glitch.me/cnliux/TV/count.svg)
 
