@@ -137,7 +137,7 @@ async def main():
             blacklist = set()
 
         urls_path = Path(config.get('PATHS', 'urls_path', fallback='config/urls.txt'))
-        templates_path = Path(config.get('PATHS', 'templates_path', fallback='config/templates.txt'))
+        templates_path = Path(config.get('PATHS', 'templates.txt', fallback='config/templates.txt'))
 
         if not urls_path.exists():
             raise FileNotFoundError(f"❌ 缺少订阅源文件: {urls_path}")
@@ -230,11 +230,12 @@ async def main():
 
         # 导出未分类的频道（仅名称）
         unclassified_path = Path(config.get('PATHS', 'unclassified_path', fallback='config/unclassified.txt'))
-        with open(output_dir / unclassified_path, 'w', encoding='utf-8') as f:
+        unclassified_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(unclassified_path, 'w', encoding='utf-8') as f:
             f.write("未分类的频道列表:\n")
             for channel in unique_unclassified:
                 f.write(f"{channel.name}\n")
-        logger.info(f"📝 未分类的频道已写入: {output_dir / unclassified_path}")
+        logger.info(f"📝 未分类的频道已写入: {unclassified_path}")
 
         m3u_filename = config.get('EXPORTER', 'm3u_filename', fallback='all.m3u')
         txt_filename = config.get('EXPORTER', 'txt_filename', fallback='all.txt')
@@ -244,7 +245,8 @@ async def main():
         logger.info(f"📄 生成的 M3U 文件: {(output_dir / m3u_filename).resolve()}")
         logger.info(f"📄 生成的 TXT 文件: {(output_dir / txt_filename).resolve()}")
         logger.info(f"📄 生成的 IPv4 地址文件: {(output_dir / ipv4_output_path).resolve()}")
-        logger.info(f"📄 生成的 IPv6 地址文件: {(output_dir / ipv6_output_path).resolve()}")
+        logger.info(f"📄 生成的 IPv6 地址文件: {(output_dir / ipv6_output_path).resolve())}")
+        logger.info(f"📝 未分类的频道已写入: {unclassified_path.resolve()}")
 
         online = sum(1 for c in unique_channels if c.status == 'online')
         logger.info(f"✅ 任务完成！在线频道: {online}/{len(unique_channels)}")
