@@ -21,12 +21,10 @@ class ResultExporter:
     def export(self, channels: List[Channel], progress_cb: Callable):
         sorted_channels = self.matcher.sort_channels_by_template(channels)
         
-        # 严格从配置文件读取参数（完全匹配您的config.ini）
         m3u_filename = self.config.get('EXPORTER', 'm3u_filename')
         epg_url = self.config.get('EXPORTER', 'm3u_epg_url')
         logo_url_template = self.config.get('EXPORTER', 'm3u_logo_url')
         
-        # 从PROGRESS节读取进度条间隔设置
         progress_interval = self.config.getint('PROGRESS', 'update_interval_export', fallback=1)
         
         self._export_m3u(sorted_channels, m3u_filename, epg_url, logo_url_template)
@@ -40,10 +38,15 @@ class ResultExporter:
             csv_format = self.config.get('EXPORTER', 'csv_filename_format')
             self._export_csv(sorted_channels, csv_format)
             progress_cb(progress_interval)
+        
+        # 导出未分类的频道
+        unclassified_channels = [c for c in channels if c.category == "其他"]
+        unclassified_path = Path(self.config.get('PATHS', 'unclassified_path', fallback='config/unclassified.txt'))
+        self._export_unclassified(unclassified_channels, unclassified_path)
+        progress_cb(progress_interval)
 
     def _export_m3u(self, channels: List[Channel], filename: str, epg_url: str, logo_url_template: str):
         with open(self.output_dir / filename, 'w', encoding='utf-8') as f:
-            # 构建文件头（严格匹配config.ini中的m3u_epg_url）
             header = f'#EXTM3U x-tvg-url="{epg_url}" catchup="append" catchup-source="?playseek=${{(b)yyyyMMddHHmmss}}-${{(e)yyyyMMddHHmmss}}"'
             f.write(header + "\n")
             
@@ -52,13 +55,11 @@ class ResultExporter:
                 if channel.status != 'online' or channel.url in seen_urls:
                     continue
                 
-                # 处理台标URL（严格匹配config.ini中的m3u_logo_url格式）
                 logo_part = ''
                 if logo_url_template and '{name}' in logo_url_template:
                     logo_url = logo_url_template.replace('{name}', quote(channel.name))
                     logo_part = f' tvg-logo="{logo_url}"'
                 
-                # 写入频道信息
                 f.write(
                     f'#EXTINF:-1 tvg-name="{channel.name}"{logo_part} '
                     f'group-title="{channel.category}",{channel.name}\n'
@@ -103,3 +104,9 @@ class ResultExporter:
                         channel.url
                     ])
                     seen_urls.add(channel.url)
+
+    def _export_unclassified(self, channels: List[Channel], filename: str):
+        with open(self.output_dir / filename, 'w', encoding='utf-8') as f:
+            f.write("未分类的频道列表:\n")
+            for channel in channels:
+                f.write(f"{channel.name},{channel.url}\n")
