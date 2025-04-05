@@ -44,7 +44,7 @@ class ResultExporter:
     def _export_m3u(self, channels: List[Channel], filename: str, epg_url: str, logo_url_template: str):
         with open(self.output_dir / filename, 'w', encoding='utf-8') as f:
             # 构建文件头（严格匹配config.ini中的m3u_epg_url）
-            header = f'#EXTM3U x-tvg-url="{epg_url}"'
+            header = f'#EXTM3U x-tvg-url="{epg_url}" catchup="append" catchup-source="?playseek=${{(b)yyyyMMddHHmmss}}-${{(e)yyyyMMddHHmmss}}"'
             f.write(header + "\n")
             
             seen_urls = set()
