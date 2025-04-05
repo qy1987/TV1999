@@ -245,7 +245,7 @@ async def main():
         logger.info(f"📄 生成的 M3U 文件: {(output_dir / m3u_filename).resolve()}")
         logger.info(f"📄 生成的 TXT 文件: {(output_dir / txt_filename).resolve()}")
         logger.info(f"📄 生成的 IPv4 地址文件: {(output_dir / ipv4_output_path).resolve()}")
-        logger.info(f"📄 生成的 IPv6 地址文件: {(output_dir / ipv6_output_path).resolve())}")
+        logger.info(f"📄 生成的 IPv6 地址文件: {(output_dir / ipv6_output_path).resolve()}")
         logger.info(f"📝 未分类的频道已写入: {unclassified_path.resolve()}")
 
         online = sum(1 for c in unique_channels if c.status == 'online')
