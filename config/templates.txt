@@ -84,6 +84,7 @@ CCTV 8K
 河北卫视高清
 河北新闻
 河北影视
+
 港·澳·台,#genre#
 翡翠台
 明珠台
@@ -108,7 +109,88 @@ Now华剧
 靖天资讯
 星卫娱乐
 卫视卡式
-
+28 AI 智慧賽馬
+Channel 5 HD
+Channel 8 HD
+Channel U HD
+myTV SUPER 18台
+PopC
+ROCK Action
+TVB Plus
+tvN
+中天新聞台
+千禧經典台(HK)
+娛樂新聞台(HK)
+寰宇新聞台
+明珠剧集台(北美)
+明珠台
+無線新聞台
+美亞電影台(HK)
+翡翠剧集台(北美)
+翡翠台
+翡翠台 4K
+翡翠综合台(北美)
+鳳凰中文
+鳳凰資訊
+鳳凰香港
+黃金翡翠台
+AXN
+Love Nature HD
+无线新闻台(北美)
+東森新聞
+Animax(HK)
+DW
+France 24
+KIX
+NHK World-Japan
+Nick Jr
+Nickelodeon
+Thrill
+Xite Hits
+Xite Rock
+ZooMoo
+亞洲新聞台
+東方衛視國際頻道
+無線衛星新聞台
+Celestial Movies
+CINEMAWORLD
+FIGHT SPORTS
+Mediacorp Entertainment Chinese
+NBA TV
+Sukan
+TV9
+TVB Jade
+TVB Xing He
+Unifi Sport
+曼聯電視頻道
+朝鮮恩情台
+ELTV生活英語台
+三立新聞iNEWS
+中視
+中視新聞
+台視
+台視新聞
+華視
+龍華偶像台
+龍華日韓台
+龍華電影台
+beIN SPORTS XTRA
+PAC12
+Tennis Channel DE
+緯來體育
+Astro Football
+Astro IQIYI
+Astro QJ
+Astro 欢喜台
+Red Bull Sports
+YES network
+CBS SPORTS NETWORK
+ESPN
+ESPN NEWS
+Tennis Channel 2 US
+Tennis Channel US
+US MTV LIVE
+viuTV
 🎬电影频道,#genre#
 CHC家庭影院
 CHC动作电影
