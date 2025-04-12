@@ -19,9 +19,17 @@ class ResultExporter:
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
     def export(self, channels: List[Channel], progress_cb: Callable):
-        sorted_channels = self.matcher.sort_channels_by_template(channels)
+        # 读取白名单
+        whitelist_path = Path(self.config.get('WHITELIST', 'whitelist_path', fallback='config/whitelist.txt'))
+        if whitelist_path.exists():
+            with open(whitelist_path, 'r', encoding='utf-8') as f:
+                whitelist = set(line.strip() for line in f if line.strip() and not line.startswith('#'))
+        else:
+            whitelist = set()
+
+        sorted_channels = self.matcher.sort_channels_by_template(channels, whitelist)
         
-        # 严格从配置文件读取参数（完全匹配您的config.ini）
+        # 严格从配置文件读取参数
         m3u_filename = self.config.get('EXPORTER', 'm3u_filename')
         epg_url = self.config.get('EXPORTER', 'm3u_epg_url')
         logo_url_template = self.config.get('EXPORTER', 'm3u_logo_url')
@@ -43,7 +51,7 @@ class ResultExporter:
 
     def _export_m3u(self, channels: List[Channel], filename: str, epg_url: str, logo_url_template: str):
         with open(self.output_dir / filename, 'w', encoding='utf-8') as f:
-            # 构建文件头（严格匹配config.ini中的m3u_epg_url）
+            # 构建文件头
             header = f'#EXTM3U x-tvg-url="{epg_url}" catchup="append" catchup-source="?playseek=${{(b)yyyyMMddHHmmss}}-${{(e)yyyyMMddHHmmss}}"'
             f.write(header + "\n")
             
@@ -52,7 +60,7 @@ class ResultExporter:
                 if channel.status != 'online' or channel.url in seen_urls:
                     continue
                 
-                # 处理台标URL（严格匹配config.ini中的m3u_logo_url格式）
+                # 处理台标URL
                 logo_part = ''
                 if logo_url_template and '{name}' in logo_url_template:
                     logo_url = logo_url_template.replace('{name}', quote(channel.name))

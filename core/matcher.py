@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import re
-from typing import Dict, List
+from typing import Dict, List, Set
 import logging
 from .models import Channel
 
@@ -121,11 +121,12 @@ class AutoCategoryMatcher:
 
         return channel_name
 
-    def sort_channels_by_template(self, channels: List[Channel]) -> List[Channel]:
+    def sort_channels_by_template(self, channels: List[Channel], whitelist: Set[str]) -> List[Channel]:
         """
-        根据模板顺序对频道进行排序，并按照模板中定义的频道名称顺序排列。
+        根据模板顺序对频道进行排序，并在每个分类内部优先排序白名单频道。
 
         :param channels: 频道列表。
+        :param whitelist: 白名单内容。
         :return: 排序后的频道列表。
         """
         # 解析模板文件，记录每个分类下的频道名称顺序
@@ -158,29 +159,21 @@ class AutoCategoryMatcher:
             # 获取当前分类下的所有频道
             category_channels = [c for c in channels if c.category == category]
 
-            # 输出分类数量和频道数量
-            logging.info(f"分类: {category}, 频道数量: {len(category_channels)}")
+            # 分离白名单频道和非白名单频道
+            whitelisted = [c for c in category_channels if self._is_whitelisted(c, whitelist)]
+            non_whitelisted = [c for c in category_channels if not self._is_whitelisted(c, whitelist)]
 
-            # 按照模板中定义的频道名称顺序排序
-            def get_channel_order(channel):
-                # 返回频道名称在模板中的索引，如果未定义则返回一个较大的值
-                try:
-                    # 使用 normalize_channel_name 方法去除后缀
-                    clean_name = self.normalize_channel_name(channel.name)
-                    # 匹配模板中的频道名称（支持正则表达式）
-                    for i, name in enumerate(channel_names):
-                        if re.match(f'^{name}$', clean_name):
-                            return i
-                    return len(channel_names)  # 未定义的频道放在最后
-                except Exception as e:
-                    logging.error(f"Error matching channel name: {channel.name}, error: {e}")
-                    return len(channel_names)
+            # 按照模板中的顺序排序白名单频道
+            whitelisted.sort(key=lambda c: self._get_channel_order(c, channel_names))
 
-            # 按照模板中的顺序排序
-            category_channels.sort(key=get_channel_order)
+            # 按照模板中的顺序排序非白名单频道
+            non_whitelisted.sort(key=lambda c: self._get_channel_order(c, channel_names))
+
+            # 合并白名单和非白名单频道，白名单频道优先
+            sorted_category_channels = whitelisted + non_whitelisted
 
             # 将排序后的频道添加到结果列表中
-            sorted_channels.extend(category_channels)
+            sorted_channels.extend(sorted_category_channels)
 
         # 添加未在模板中定义的分类的频道
         remaining_channels = [c for c in channels if c.category not in template_order]
@@ -188,3 +181,30 @@ class AutoCategoryMatcher:
         sorted_channels.extend(remaining_channels)
 
         return sorted_channels
+
+    def _is_whitelisted(self, channel, whitelist):
+        """检查频道是否在白名单中"""
+        for entry in whitelist:
+            if entry in channel.url or channel.url == entry or channel.name == entry:
+                return True
+        return False
+
+    def _get_channel_order(self, channel: Channel, channel_names: List[str]) -> int:
+        """
+        获取频道在模板中的顺序。
+
+        :param channel: 频道对象。
+        :param channel_names: 模板中定义的频道名称列表。
+        :return: 频道在模板中的顺序，未定义的频道返回一个较大的值。
+        """
+        try:
+            # 使用 normalize_channel_name 方法去除后缀
+            clean_name = self.normalize_channel_name(channel.name)
+            # 匹配模板中的频道名称（支持正则表达式）
+            for i, name in enumerate(channel_names):
+                if re.match(f'^{name}$', clean_name):
+                    return i
+            return len(channel_names)  # 未定义的频道放在最后
+        except Exception as e:
+            logging.error(f"Error matching channel name: {channel.name}, error: {e}")
+            return len(channel_names)
