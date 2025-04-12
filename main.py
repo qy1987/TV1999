@@ -66,7 +66,7 @@ def write_failed_urls(failed_urls: Set[str], config):
         logger.error(f"❌ 写入失败 URL 文件时出错: {str(e)}")
 
 
-def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, matcher):
+def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, matcher, whitelist):
     """
     分类 IPv4 和 IPv6 地址，并将结果写入文件。
     文件格式：
@@ -74,7 +74,7 @@ def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, 
     频道名称,URL
     """
     # 首先对频道按照模板顺序进行排序
-    sorted_channels = matcher.sort_channels_by_template(channels)
+    sorted_channels = matcher.sort_channels_by_template(channels, whitelist)
 
     ipv4_channels = []
     ipv6_channels = []
@@ -160,6 +160,14 @@ async def main():
         else:
             blacklist = set()
 
+        # 读取 WHITELIST 配置
+        whitelist_path = Path(config.get('WHITELIST', 'whitelist_path', fallback='config/whitelist.txt'))
+        if whitelist_path.exists():
+            with open(whitelist_path, 'r', encoding='utf-8') as f:
+                whitelist = set(line.strip() for line in f if line.strip() and not line.startswith('#'))
+        else:
+            whitelist = set()
+
         # 读取 PATHS 配置
         urls_path = Path(config.get('PATHS', 'urls_path', fallback='config/urls.txt'))
         templates_path = Path(config.get('PATHS', 'templates_path', fallback='config/templates.txt'))
@@ -209,14 +217,17 @@ async def main():
         filtered_channels = [chan for chan in filtered_channels if not is_blacklisted(chan, blacklist)]
         logger.info(f"过滤黑名单后频道数量: {len(filtered_channels)}")
 
+        # 按模板排序并优先白名单频道
+        sorted_channels = matcher.sort_channels_by_template(filtered_channels, whitelist)  # 修正：添加 whitelist 参数
+
         # 阶段4: 测速测试
         unique_channels = []
         seen_urls = set()
-        for chan in filtered_channels:
+        for chan in sorted_channels:
             if chan.url not in seen_urls:
                 unique_channels.append(chan)
                 seen_urls.add(chan.url)
-        logger.info(f"去重后频道数量: {len(unique_channels)}/{len(filtered_channels)}")
+        logger.info(f"去重后频道数量: {len(unique_channels)}/{len(sorted_channels)}")
 
         tester = SpeedTester(
             timeout=tester_timeout,
@@ -248,7 +259,7 @@ async def main():
         progress.complete()
 
         # 分类并写入 IPv4 和 IPv6 地址
-        classify_and_write_ips(unique_channels, config, output_dir, matcher)
+        classify_and_write_ips(unique_channels, config, output_dir, matcher, whitelist)
 
         # 输出生成的文件路径
         m3u_filename = config.get('EXPORTER', 'm3u_filename', fallback='all.m3u')
