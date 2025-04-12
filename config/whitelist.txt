@@ -1,0 +1,5 @@
+# 白名单示例
+# 域名
+# bbc.co.uk
+# 完整URL
+#http://example.com/live.m3u8
