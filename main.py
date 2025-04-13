@@ -48,24 +48,6 @@ def is_blacklisted(channel, blacklist):
     return False
 
 
-def write_failed_urls(failed_urls: Set[str], config):
-    """将失败的 URL 写入文件"""
-    try:
-        # 从配置文件中获取失败 URL 的路径
-        failed_urls_path = Path(config.get('PATHS', 'failed_urls_path', fallback='config/failed_urls.txt'))
-        
-        # 确保目录存在
-        failed_urls_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # 写入失败的 URL
-        with open(failed_urls_path, 'w', encoding='utf-8') as f:
-            for url in failed_urls:
-                f.write(f"{url}\n")
-        logger.info(f"📝 失败的 URL 已写入: {failed_urls_path}")
-    except Exception as e:
-        logger.error(f"❌ 写入失败 URL 文件时出错: {str(e)}")
-
-
 def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, matcher, whitelist):
     """
     分类 IPv4 和 IPv6 地址，并将结果写入文件。
@@ -73,6 +55,12 @@ def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, 
     分类名称,#genre#
     频道名称,URL
     """
+    # 从配置文件中读取 update_interval_classify
+    update_interval = config.getint('PROGRESS', 'update_interval_classify', fallback=50)
+
+    # 创建进度条
+    progress = StageProgress("🏷️ 分类频道", len(channels), update_interval=update_interval)
+
     # 首先对频道按照模板顺序进行排序
     sorted_channels = matcher.sort_channels_by_template(channels, whitelist)
 
@@ -92,6 +80,11 @@ def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, 
         elif ipv6_pattern.search(channel.url):
             ipv6_channels.append(channel)
             category_counts[channel.category] = category_counts.get(channel.category, 0) + 1
+
+        # 更新进度条
+        progress.update()
+
+    progress.complete()
 
     # 写入 IPv4 地址
     ipv4_output_path = Path(config.get('PATHS', 'ipv4_output_path', fallback='ipv4.txt'))
