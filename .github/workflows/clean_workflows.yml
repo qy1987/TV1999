@@ -1,0 +1,24 @@
+name: Auto Delete Old Workflow Runs (北京时间)
+
+on:
+  schedule:
+    - cron: '0 16 * * *'  # 北京时间每天午夜12点（UTC时间16:00）
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Delete old runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 14
+          keep_minimum_runs: 1
