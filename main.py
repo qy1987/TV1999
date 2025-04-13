@@ -117,6 +117,19 @@ def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, 
     logger.info(f"📝 IPv6 地址已写入: {output_dir / ipv6_output_path}")
 
 
+def write_failed_urls(failed_urls: Set[str], config):
+    """将测速失败的 URL 写入文件"""
+    failed_urls_path = Path(config.get('PATHS', 'failed_urls_path', fallback='failed_urls.txt'))
+    if not failed_urls:
+        logger.info("没有测速失败的 URL，无需写入文件")
+        return
+
+    with open(failed_urls_path, 'w', encoding='utf-8') as f:
+        for url in failed_urls:
+            f.write(f"{url}\n")
+    logger.info(f"📝 测速失败的 URL 已写入: {failed_urls_path}")
+
+
 async def main():
     """主工作流程"""
     try:
