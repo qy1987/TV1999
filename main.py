@@ -56,7 +56,7 @@ def classify_and_write_ips(channels: List['Channel'], config, output_dir: Path, 
     频道名称,URL
     """
     # 从配置文件中读取 update_interval_classify
-    update_interval = config.getint('PROGRESS', 'update_interval_classify', fallback=50)
+    update_interval = config.getint('PROGRESS', 'update_interval_classify', fallback=1000)
 
     # 创建进度条
     progress = StageProgress("🏷️ 分类频道", len(channels), update_interval=update_interval)
