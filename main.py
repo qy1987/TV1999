@@ -191,7 +191,7 @@ async def main():
         progress.complete()
 
         # 阶段2: 解析频道
-        parser = PlaylistParser()
+        parser = PlaylistParser(config)
         valid_contents = [c for c in contents if c.strip()]
         progress = StageProgress("🔍 解析频道", len(valid_contents), update_interval=20)
         channels = []
