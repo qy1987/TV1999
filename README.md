@@ -87,7 +87,9 @@ project/
 - **优化**：
   - 改进了频道排序逻辑，确保白名单频道在分类内部优先显示。
   - 优化了进度条显示，提升了用户体验。
-
+### v1.0.1 (2025-4-13)
+- **新增功能**：
+  - **URL 参数过滤**：新增 `[URL_FILTER]` 配置，用于移除 URL 中的指定参数，提高数据纯净度。在 `config.ini` 中配置 `remove_params` 以指定需要移除的参数。
 
 其他
 [![Star History Chart](https://api.star-history.com/svg?repos=cnliux/tv&type=Date)](https://www.star-history.com/#cnliux/tv&Date)
