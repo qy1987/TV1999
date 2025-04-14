@@ -51,7 +51,7 @@ class ResultExporter:
 
     def _export_m3u(self, channels: List[Channel], filename: str, epg_url: str, logo_url_template: str):
         with open(self.output_dir / filename, 'w', encoding='utf-8') as f:
-            # 构建文件头
+            # 构建文件头（保持不变）
             header = f'#EXTM3U x-tvg-url="{epg_url}" catchup="append" catchup-source="?playseek=${{(b)yyyyMMddHHmmss}}-${{(e)yyyyMMddHHmmss}}"'
             f.write(header + "\n")
             
@@ -60,16 +60,16 @@ class ResultExporter:
                 if channel.status != 'online' or channel.url in seen_urls:
                     continue
                 
-                # 处理台标URL
+                # 处理台标 URL
                 logo_part = ''
                 if logo_url_template and '{name}' in logo_url_template:
                     logo_url = logo_url_template.replace('{name}', quote(channel.name))
                     logo_part = f' tvg-logo="{logo_url}"'
                 
-                # 写入频道信息
+                # 写入频道信息（修改 EXTINF 部分）
                 f.write(
                     f'#EXTINF:-1 tvg-name="{channel.name}"{logo_part} '
-                    f'group-title="{channel.category}",{channel.name}\n'
+                    f'group-title="{channel.category}", {channel.name}\n'
                 )
                 f.write(f"{channel.url}\n")
                 seen_urls.add(channel.url)
