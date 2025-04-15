@@ -1,4 +1,5 @@
 https://ghproxy.cc/https://raw.githubusercontent.com/mlvjfchen/TV/refs/heads/main/output/result.txt
+https://fastly.jsdelivr.net/gh/Wirili/IPTV@main/live.txt
 https://aktv.space/live.m3u
 https://fastly.jsdelivr.net/gh/wwb521/live@main/tv.txt
 https://9239.kstore.space/jisuTV2.txt
