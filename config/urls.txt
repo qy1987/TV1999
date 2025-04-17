@@ -1,6 +1,11 @@
 https://ghproxy.cc/https://raw.githubusercontent.com/mlvjfchen/TV/refs/heads/main/output/result.txt
 https://fastly.jsdelivr.net/gh/Wirili/IPTV@main/live.txt
 https://aktv.space/live.m3u
+https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt
+https://raw.githubusercontent.com/Desmond-Dong/IPTV/refs/heads/main/result.m3u
+https://raw.githubusercontent.com/TianmuTNT/iptv/refs/heads/main/iptv.txt
+https://raw.githubusercontent.com/zzmaze/iptv/main/iptv.txt
+https://raw.githubusercontent.com/zbefine/iptv/main/iptv.m3u
 https://fastly.jsdelivr.net/gh/wwb521/live@main/tv.txt
 https://9239.kstore.space/jisuTV2.txt
 http://175.178.251.183:6689/live.txt
