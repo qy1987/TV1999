@@ -128,7 +128,7 @@ https://tv.xiaofengtv.com/tvbox/live.txt
 https://live.zbds.top/tv/iptv4.txt
 http://iptv.catvod.com/tv.m3u
 http://www.lyyytv.cn/yt/zhibo/1.txt
-http://111.229.128.166:7110/2024api/maotv.txt
+http://111.229.128.166:7110/2024api/live/live.txt
 https://ghproxy.cfd/https:/raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.txt
 https://ghproxy.cfd/https://raw.githubusercontent.com/X1999-Y/TV/refs/heads/master/output/result.txt
 https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
