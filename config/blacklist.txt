@@ -15,7 +15,9 @@ zw9999.cnstream.top
 zsntlqj.xicp.net
 z.b.bkpcp.top
 zb.xmzb.xyz
-
+goo.bkpcp.top
+gat.bkpcp.top
+bkpcp.top
 # 黑名单单个网址
 http://120.55.49.231:3095/rtp/233.50.201.109:5140
 http://111.198.209.249:4022/rtp/239.3.1.149:8076
