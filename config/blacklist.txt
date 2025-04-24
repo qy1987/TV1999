@@ -19,6 +19,8 @@ goo.bkpcp.top
 gat.bkpcp.top
 bkpcp.top
 player.cntv.cn
+www.freetv.top
+api.mytv666.top
 
 # 黑名单单个网址
 http://120.55.49.231:3095/rtp/233.50.201.109:5140
