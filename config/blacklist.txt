@@ -21,6 +21,23 @@ bkpcp.top
 player.cntv.cn
 www.freetv.top
 api.mytv666.top
+epg.pw
+skype.serv00.net
+iptv.yjxfz.com
+live-hls-web-ajb.getaj.net
+live.goodiptv.club
+hc73k3dhwo5gfkt.wcetv.com
+stream1.freetv.fun
+zw9999.cnstream.top
+zsntlqj.xicp.net
+ku9.3n.cc
+zb.xmzb.xyz
+150.158.112.123
+p2.bdstatic.com
+公众号~玉玉软件库
+tvbox6.icu
+tv.iill.top
+fmbox.cc
 
 # 黑名单单个网址
 http://120.55.49.231:3095/rtp/233.50.201.109:5140
