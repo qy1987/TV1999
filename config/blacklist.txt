@@ -38,6 +38,7 @@ p2.bdstatic.com
 tvbox6.icu
 tv.iill.top
 fmbox.cc
+web9916.w.computerqwq.cf
 
 # 黑名单单个网址
 http://120.55.49.231:3095/rtp/233.50.201.109:5140
@@ -31481,3 +31482,4 @@ http://serv00.bkpcp.top/litv3.php?id=4gtv-4gtv058
 http://123.118.50.46:8686/rtp/239.3.1.157:8176
 http://satellitepull.cnr.cn/live/wxscws/playlist.m3u8
 http://ms.fxim.net:808/hls/27/index.m3u8
+http://web9916.w.computerqwq.cf/jzb.php?id=cctv14&公众号【医工学习日志】
