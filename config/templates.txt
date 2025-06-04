@@ -5,8 +5,8 @@
 # CCTV综合$ 表示精确匹配以 CCTV综合 结尾的频道名称。
 # $ 是正则表达式的锚点，表示匹配字符串的结尾，这样可以避免 CCTV-1 被更通用的规则（如 CCTV.*）覆盖。#suffixes:高清,HD,综合去除后缀 
 #suffixes:高清,HD,
-音乐频道,#genre#
 
+音乐频道,#genre#
 CCTV15音乐,http://www.weec.top:2222/rtp/239.3.1.153:8136
 CCTV15,http://[2409:8087:5e01:34::21]:6610/ZTE_CMS/00000001000000060000000000000501/index.m3u8?IAS
 CCTV风云音乐,http://zf.aiyinch.cn/cqyx.php?id=fyyy
